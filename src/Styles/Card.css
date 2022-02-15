@@ -1,0 +1,13 @@
+
+
+li {
+   list-style-type: none; 
+   max-width: 500px;
+   overflow: hidden;
+   margin:0;
+}
+
+img {
+    max-width: 90%;
+    max-height: 90%;
+}

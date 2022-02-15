@@ -1,6 +1,6 @@
 import { useState } from "react";
-
 import Card from "./Card";
+import '../Styles/List.css';
 
 
 
@@ -9,7 +9,7 @@ function List(props){
     const [data]=useState(props.data)
         
     return (
-        <ul>
+        <ul className="list">
             {data.map((el) => 
                 {return(
                     <Card

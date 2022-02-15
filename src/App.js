@@ -7,7 +7,7 @@ function App() {
   const [data,setData]=useState(null);
   const [prev,setPrev]=useState();
   const [next,setNext]=useState();
-  const [loading,setLoading] = useState(true); 
+  const [loading,setLoading] = useState(false); 
   
   useEffect(() => {DataService.get()
             .then(res =>
@@ -23,9 +23,7 @@ function App() {
   
   return (
     <div className="App">
-        {console.log(data)}
-        {console.log(prev)}
-        {console.log(next)}
+
         {loading?"Loading List, please wait...":<List data={data}/>}
         <div>
             <a href={prev}>Next Page</a>

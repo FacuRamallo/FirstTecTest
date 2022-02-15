@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import DataService from "../DataService";
-
-
+import '../Styles/Card.css';
 
 function Card(props){
     const [img,setImg]=useState("")
