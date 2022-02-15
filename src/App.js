@@ -4,18 +4,29 @@ import List from './Components/List';
 import DataService from './DataService';
 
 function App() {
-  const [data,setData]=useState();
-  const [prev,setPrev]=useState('')
-  const [next,setNext]=useState('') 
+  const [data,setData]=useState(null);
+  const [prev,setPrev]=useState();
+  const [next,setNext]=useState();
+  const [loading,setLoading] = useState(true); 
   
   useEffect(() => {DataService.get()
-            .then(res => setData(res.results))
-            },[])
+            .then(res =>
+              { 
+              setData(res.results)
+              setPrev(res.previous)
+              setNext(res.next)
+              setLoading(false);
+            })
+          },[])
+  
+ 
   
   return (
     <div className="App">
         {console.log(data)}
-        <List data={data}/>
+        {console.log(prev)}
+        {console.log(next)}
+        {loading?"Loading List, please wait...":<List data={data}/>}
         <div>
             <a href={prev}>Next Page</a>
             <p>Showing ids a to a</p>
