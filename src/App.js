@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import List from './Components/List';
 import DataService from './Services/DataService';
+import './Styles/reset.css';
 
 function App() {
   const [data,setData]=useState(null);
@@ -22,16 +23,15 @@ function App() {
         )
     },[])
   
- 
-  
+    
   return (
     <div className="App">
 
         {loading?"Loading List, please wait...":<List data={data}/>}
         <div>
-            <a href={prev}>Next Page</a>
+            <a href={next}>Next Page</a>
             <p>Showing ids a to a</p>
-            <a href={next}>Prev Page</a>
+            <a href={prev}>Prev Page</a>
         </div>
     </div>
   );
