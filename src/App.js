@@ -1,37 +1,57 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import List from './Components/List';
+import Global from './Global';
 import DataService from './Services/DataService';
 import './Styles/reset.css';
 
 function App() {
-  const [data,setData]=useState(null);
-  const [prev,setPrev]=useState();
-  const [next,setNext]=useState();
+  const [data,setData]=useState();
+  const [urlToFetch, setUrlToFetch] = useState(Global.appUrl)
+  const [prev,setPrev]=useState("");
+  const [next,setNext]=useState("");
   const [loading,setLoading] = useState(true); 
   
   useEffect(() => 
     {
-      DataService.getData()
-        .then(data =>
+      DataService.getDataUrlParam(urlToFetch)
+        .then(dataFetch =>
           {
-            setData(data.results)
-            setPrev(data.previous)
-            setNext(data.next)
+            setData(dataFetch.results)
+            setPrev(dataFetch.previous? dataFetch.previous : Global.appUrl)
+            setNext(dataFetch.next)
             setLoading(false);
+            // console.log(urlToFetch)
+            // console.log(data)
           }
-        )
-    },[])
+          )
+    },[urlToFetch])
   
+    const nextPage = () => {
+      setUrlToFetch(next)
+      setLoading(true)
+    }
+
+    const prevPage = () => {
+      setUrlToFetch(prev)
+      setLoading(true)
+    }
     
   return (
     <div className="App">
+        {console.log(data)}
+        <div>
+            <button onClick={ () => nextPage() } >Next Page</button>
+            <p>Showing ids a to a</p>
+            <button onClick={ () => prevPage() }>Prev Page</button>
+        </div>
 
         {loading?"Loading List, please wait...":<List data={data}/>}
+        
         <div>
-            <a href={next}>Next Page</a>
+            <button onClick={ () => nextPage() } >Next Page</button>
             <p>Showing ids a to a</p>
-            <a href={prev}>Prev Page</a>
+            <button onClick={ () => prevPage() }>Prev Page</button>
         </div>
     </div>
   );

@@ -8,7 +8,6 @@ function Card(props){
         <li key={`${props.id}`} id={props.id}>
             
                 <img src={props.imgUrl} alt="Pokemon Img"></img>
-            
                 <p>{props.name}</p>
             
         </li>

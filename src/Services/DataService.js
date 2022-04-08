@@ -18,7 +18,20 @@ class DataService {
                     return data;
                 }
             )
-            return data;
+        return data;
+    }
+
+    static async getDataUrlParam( url )
+    {
+        let data;
+        await axios.get(url, {responseType: 'json'})
+            .then(res => 
+                {
+                    data = res.data;
+                    return data;
+                }
+            )
+        return data;
     }
 
     static async getPkemonsList(data){
