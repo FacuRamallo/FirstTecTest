@@ -1,7 +1,7 @@
 import axios from "axios";
 import Global from "../Global";
 import Pokemon from "../Model/Pokemon";
-
+// import "@babel/plugin-proposal-class-static-block";
 class DataService {
     static url;
     static {

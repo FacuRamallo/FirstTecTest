@@ -21,15 +21,18 @@ function App() {
             setPrev(dataFetch.previous? dataFetch.previous : Global.appUrl)
             setNext(dataFetch.next)
             setLoading(false);
+            // console.log(dataFetch.previous, "useEffect")
             // console.log(urlToFetch)
+            // console.log(dataFetch.next, "useEffect")
             // console.log(data)
           }
           )
     },[urlToFetch])
-  
+
     const nextPage = () => {
       setUrlToFetch(next)
       setLoading(true)
+      console.log(next)
     }
 
     const prevPage = () => {
@@ -39,14 +42,19 @@ function App() {
     
   return (
     <div className="App">
-        {console.log(data)}
+        {/* {console.log(data)} */}
         <div>
             <button onClick={ () => nextPage() } >Next Page</button>
             <p>Showing ids a to a</p>
             <button onClick={ () => prevPage() }>Prev Page</button>
         </div>
 
-        {loading?"Loading List, please wait...":<List data={data}/>}
+        {
+          loading?
+          "Loading List, please wait..."
+          :
+          <List data={data} setLoading={setLoading}/>
+        }
         
         <div>
             <button onClick={ () => nextPage() } >Next Page</button>

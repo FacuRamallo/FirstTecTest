@@ -12,25 +12,27 @@ function List(props){
         .then(res=>{
             console.log(res);
             setData(res)
+            props.setLoading(false);
         })  
     },[])
-    
+
+    console.log(props.data)
+
     return (
         <ul className="list">
-
-            {data?data.map((el) => 
-                {
-                    return(
-                        <Card
-                            id={el.id}
-                            name={el.name}    
-                            imgUrl={el.imgUrl}
-                            key={el.id}
-                        />
-                    )
-                }
-            ):"Loading..."}
-        </ul>);
+        {
+                data.map((el, index) => 
+                    <Card
+                        id={el.id}
+                        name={el.name}    
+                        imgUrl={el.imgUrl}
+                        key={index}
+                    />
+                )
+            
+        }
+        </ul>
+    );
 }
 
 export default List;
